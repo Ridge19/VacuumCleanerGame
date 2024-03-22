@@ -11,7 +11,7 @@ void showStudentInformation(string name, string id, string email){
     cout << "Name: " << name << endl;
     cout << "Student ID: " << id << endl;
     cout << "Email: " << email << endl;
-    cout << "------------------------" << endl;
+    cout << "------------------------\n" << endl;
 }
 
 void menu();
@@ -25,35 +25,18 @@ void Quit();
 
 int main()
 {
-    while (!cin.eof()) {
-        Board board;
+    menu();
+    std::string userInput;
 
-        int input = 0;
+    userInput = Helper::readInput();
 
-        menu();
-
-        cin >> input;
-
-        if (input == 1) {
-            gameMenu();
-
-            string gameInput;
-
-            cout << "enter input: " << endl;
-
-        }
-        else if (input == 2) {
-            showStudentInformation("Ridge Tagala", "s3934367", "s3934367@student.rmit.edu.au");
-        }
-        else if (input == 3) {
-            Quit();
-            return EXIT_SUCCESS;
-        }
-        else {
-            cout << "error - not a valid input" << endl;
-            cout << "program will now terminate" << endl;
-            Quit();
-        }
+    if (userInput == "1") {
+        gameMenu();
+        
+    } else if (userInput == "2") {
+        showStudentInformation("Ridge Tagala", "s3934367", "s3934367@student.rmit.edu.au");
+    } else if (userInput ==  "3") {
+        Quit();
     }
     /**
      * TODO: here's the main function. You can write the "main menu" loop/code
@@ -68,14 +51,11 @@ void menu() {
     cout << "2. Show Student Information" << endl;
     cout << "3. Quit" << endl;
 
-    cout << "Please enter your choice: " << endl;
+    cout << "Please enter your choice: ";
+    cout << endl; 
 }
 
 void gameMenu() {
-    cout << endl;
-    cout << "Game is a work in progress. " << endl;
-    cout << endl;
-
     cout << "You can use the following commands to play the game: \n" << endl;
     cout << "load <g>" << endl;
     cout << "\t" << "g: number of the game board to load" << endl;
@@ -87,6 +67,13 @@ void gameMenu() {
     cout << "turn_left (or l)" << endl;
     cout << "turn_right (or r)" << endl;
     cout << "quit" << endl; 
+
+    std::string gameInput; 
+
+    cout << "Enter option: " << endl;
+    gameInput = Helper::readInput();
+
+    
 
 }
 
