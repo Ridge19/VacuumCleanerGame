@@ -20,13 +20,13 @@ void game();
 
 void gameMenu();
 
+
 void Quit();
 
 int main()
 {
     while (!cin.eof()) {
         Board board;
-        Player *player = new Player();
 
         int input = 0;
 
@@ -40,20 +40,7 @@ int main()
             string gameInput;
 
             cout << "enter input: " << endl;
-            cin >> gameInput;
 
-            if (gameInput == "load" || gameInput == "Load") {
-                cout << "Loading game" << endl;
-                board.load(1);
-                board.display(player);
-            }
-            else if (gameInput == "quit" || gameInput == "Quit") {
-                gameMenu();
-            }
-            else {
-                cout << "invalid input! try again." << endl;
-                menu();
-            }
         }
         else if (input == 2) {
             showStudentInformation("Ridge Tagala", "s3934367", "s3934367@student.rmit.edu.au");
