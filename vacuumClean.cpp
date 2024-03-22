@@ -25,6 +25,9 @@ void Quit();
 int main()
 {
     while (!cin.eof()) {
+        Board board;
+        Player *player = new Player();
+
         int input = 0;
 
         menu();
@@ -41,15 +44,8 @@ int main()
 
             if (gameInput == "load" || gameInput == "Load") {
                 cout << "Loading game" << endl;
-                bool loadBoard(true);
-                bool initializePlayer(true);
-                if (loadBoard == true && initializePlayer == true) {
-                    cout << "board loaded" << endl;
-                    cout << "player initialized" << endl;
-                }
-                else {
-                    cout << "Error!" << endl;
-                }
+                board.load(1);
+                board.display(player);
             }
             else if (gameInput == "quit" || gameInput == "Quit") {
                 gameMenu();
