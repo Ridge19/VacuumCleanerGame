@@ -30,7 +30,6 @@ Position Player::getNextForwardPosition()
 {
     //TODO
 
-    // return this->position;
 }
 
 void Player::updatePosition(Position position)

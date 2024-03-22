@@ -1,5 +1,4 @@
 #include "board.h"
-// #include <algorithm>
 
 using std::vector;
 
@@ -44,8 +43,6 @@ Board::~Board()
 void Board::load(int boardId)
 {
     // TODO
-
-    
 }
 
 bool Board::placePlayer(Position position)
@@ -56,14 +53,13 @@ bool Board::placePlayer(Position position)
 
 PlayerMove Board::movePlayerForward(Player* player)
 {
-    // TODO 
+    // TODO
     return PLAYER_MOVED;
 }
 
 void Board::display(Player* player)
 {
     // TODO
-
 }
 
 
