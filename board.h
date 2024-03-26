@@ -83,21 +83,6 @@ public:
      * Display the board according to the specification. Take note when encountering
      * the PLAYER cell and that you should call "displayDirection(...)" function to
      * display the arrow. Here is an example output (without the player arrow):
-
-    
-    | |0|1|2|3|4|5|6|7|8|9| 
-    |0| | | | | | | | | | | 
-    |1| | | | | | | | | | | 
-    |2|*|*|*| | |*| | | | | 
-    |3| | |*| | | |*|*| | | 
-    |4| | |*| | | | | | | | 
-    |5| | | | | | |*| | | | 
-    |6| | | | | | |*| | | | 
-    |7| | |*| | | |*| | | | 
-    |8| | |*| | | | | | | | 
-    |9| | |*| | | | | | | | 
-
-
     */
     void display(Player* player);
 };

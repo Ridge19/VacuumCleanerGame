@@ -29,6 +29,7 @@ void Player::turnDirection(TurnDirection turnDirection)
 Position Player::getNextForwardPosition()
 {
     //TODO
+    return this->position;
 
 }
 
