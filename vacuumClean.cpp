@@ -21,7 +21,7 @@ void showStudentInformation(string name, string id, string email){
     cout << "------------------------\n" << endl;
 }
 
-void menu();
+void mainMenu();
 
 void game();
 
@@ -29,53 +29,51 @@ void gameMenu();
 
 void Quit();
 
-int main()
-{
+int main() {
     /**
      * TODO: here's the main function. You can write the "main menu" loop/code
      * here or you can make separate functions - up to you.
      */
-    
-    menu();
+    while (true) {
+        mainMenu();
 
-    Board board;
-    std::string userInput;
+        Board board;
+        std::string userInput; //for main Menu (vacuum cleaner menu)
+        std::string gameInput; //for game menu (load board menu)
+        userInput = Helper::readInput();
 
-    userInput = Helper::readInput();
+        if (userInput == "1") {
+            gameMenu();
+            cout << "Enter option: " << endl;
+            gameInput = Helper::readInput();
+            if (gameInput == "load 1" || gameInput == "1") {
+                cout << "loading board 1" << endl;
+                board.load(1);
+                gameMenu();
+                // IMPLEMENT REST OF GAME FUNCTION FOR BOARD 1 HERE 
+            } else if (gameInput == "load 2" || gameInput == "2") {
+                cout << "loading board 2" << endl;
+                board.load(2);
+                gameMenu();
+                // IMPLEMENT REST OF GAME FUNCTION FOR BOARD 2 HERE 
+            } else if (gameInput == "quit" || gameInput == "Quit") {
+                cout << "going back to main menu" << endl;
+            } else {
+                Helper::printInvalidInput(); //prints invalid output by calling helper class 
+            }
+        } else if (userInput == "2") {
+            showStudentInformation("Ridge Tagala", "s3934367", "s3934367@student.rmit.edu.au");
 
-    if (userInput == "1") {
-        gameMenu();
-        std::string gameInput; 
-
-        cout << "Enter option: " << endl;
-        gameInput = Helper::readInput();
-
-        if (gameInput == "load 1" || gameInput == "1") {
-            cout << "loading board 1" << endl;
-            board.load(1);
-        } else if (gameInput == "load 2" || gameInput == "2") {
-            cout << "loading board 2" << endl;
-            board.load(2);
-        } else if (gameInput == "quit" || gameInput == "Quit") {
+        } else if (userInput == "3") {
             Quit();
-        }
-        else {
+            return EXIT_SUCCESS;
+        } else {
             Helper::printInvalidInput();
         }
-    } else if (userInput == "2") {
-        showStudentInformation("Ridge Tagala", "s3934367", "s3934367@student.rmit.edu.au");
-
-    } else if (userInput == "3") {
-
-        Quit();
-    } else {
-
-        Helper::printInvalidInput();
     }
-    return EXIT_SUCCESS;
-}
+} 
 
-void menu() {
+void mainMenu() { //userInput 
     cout << "\nWelcome to the Vaccum Cleaning Game!" << endl;
     cout << "------------------------" << endl;
     cout << "1. Play Game" << endl;
@@ -86,7 +84,7 @@ void menu() {
     cout << endl;
 }
 
-void gameMenu() {
+void gameMenu() { //gameInput
     cout << "You can use the following commands to play the game: \n" << endl;
     cout << "load <g>" << endl;
     cout << "\t" << "g: number of the game board to load" << endl;

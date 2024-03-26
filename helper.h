@@ -45,5 +45,7 @@ public:
 
     static void printInvalidInput();
 
+    static void whiteSpace();
+
 };
 #endif
