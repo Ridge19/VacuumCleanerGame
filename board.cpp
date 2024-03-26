@@ -1,6 +1,6 @@
 #include "board.h"
-
 using std::vector;
+
 
 #define ROWS 10
 #define COLS 10
@@ -36,7 +36,7 @@ const vector<vector<Cell>> Board::BOARD_2 =
 Board::Board()
 {
     // TODO
-    Board::BOARD_1[EMPTY][BLOCKED];
+    Board::BOARD_1[ROWS][COLS];
     Board::BOARD_2[ROWS][COLS];
 
 }
@@ -51,35 +51,36 @@ void Board::load(int boardId)
 {
     // TODO
     if (boardId == 1) {
-        std::cout << "|  |";
-        for (int col = 0; col < COLS; col++) {
-            std::cout << col << " |";
-        }
-        std::cout << std::endl;
+        std::cout << " |" << "  " << " |";
+            for (int col = 0; col < COLS; col++) {
+                std::cout << " " << col << " |";
+            }
+            std::cout << std::endl;
 
         for (int y = 0; y < ROWS; y++) {
-            std::cout << "| " << y << " | ";
+            std::cout << " | " << y << " |";
             for (int x = 0; x < COLS; x++) {
-                std::cout << Board::BOARD_1[y][x] << " |";
+                std::cout << " " << Board::BOARD_1[y][x] << " |";
             }
             std::cout << std::endl;
         }
     } else if (boardId == 2) {
-        std::cout << "|  |";
-            for (int col = 0; col < COLS; col++) {
-                std::cout << col << " |";
+        std::cout << " |" << "  " << " |";
+        for (int col = 0; col < COLS; col++) {
+                std::cout << " " << col << " |";
             }
             std::cout << std::endl;
 
         for (int y = 0; y < ROWS; y++) {
-            std::cout << "| " << y << " | ";
+            std::cout << " | " << y << " |";
             for (int x = 0; x < COLS; x++) {
-                std::cout << Board::BOARD_2[y][x] << " |";
+                std::cout << " " << Board::BOARD_2[y][x] << " |";
             }
             std::cout << std::endl;
         }
 
-    } else {
+    } 
+    else {
         Helper::printInvalidInput();
     }
 }
