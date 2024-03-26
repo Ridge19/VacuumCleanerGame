@@ -43,8 +43,6 @@ int main()
 
     userInput = Helper::readInput();
 
-    // board.load(1);
-
     if (userInput == "1") {
         gameMenu();
         std::string gameInput; 
@@ -58,7 +56,10 @@ int main()
         } else if (gameInput == "load 2" || gameInput == "2") {
             cout << "loading board 2" << endl;
             board.load(2);
-        } else {
+        } else if (gameInput == "quit" || gameInput == "Quit") {
+            Quit();
+        }
+        else {
             Helper::printInvalidInput();
         }
     } else if (userInput == "2") {
@@ -98,8 +99,6 @@ void gameMenu() {
     cout << "turn_right (or r)" << endl;
     cout << "quit" << endl; 
 }
-
-
 
 void Quit() {
     cout << "Good bye!\n\n";
