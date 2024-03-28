@@ -39,19 +39,19 @@ Board::Board()
     Board::BOARD_1[ROWS][COLS];
     Board::BOARD_2[ROWS][COLS];
 
-    // std::cout << "|" << " " << "|";
-    // for (int col = 0; col < COLS; col++) {
-    //     std::cout << "" << col << "|";
-    // }
-    // std::cout << std::endl;
+    std::cout << "|" << " " << "|";
+    for (int col = 0; col < COLS; col++) {
+        std::cout << "" << col << "|";
+    }
+    std::cout << std::endl;
 
-    // for (int y = 0; y < ROWS; y++) {
-    //     std::cout << "|" << y << "|";
-    //     for (int x = 0; x < COLS; x++) {
-    //         std::cout << "" << " " << "|";
-    //     }
-    //     std::cout << std::endl;
-    // }
+    for (int y = 0; y < ROWS; y++) {
+        std::cout << "|" << y << "|";
+        for (int x = 0; x < COLS; x++) {
+            std::cout << "" << " " << "|";
+        }
+        std::cout << std::endl;
+    }
 }
 
 Board::~Board()

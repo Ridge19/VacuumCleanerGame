@@ -10,10 +10,6 @@ void Helper::printInvalidInput()
     std::cout << "Invalid input.\n" << std::endl;
 }
 
-void Helper::whiteSpace() {
-    std::cout << "Error! input cannot be whitespace!" << std::endl;
-}
-
 // This below function does not comply to our C++ Style Guide, 
 // as it uses the banned keyword "break" twice. The marker will 
 // not deduct marks in this case if you use this function, though
