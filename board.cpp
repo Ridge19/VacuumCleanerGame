@@ -1,6 +1,9 @@
 #include "board.h"
 using std::vector;
 
+using std::cout;
+using std::endl;
+
 
 #define ROWS 10
 #define COLS 10
@@ -57,6 +60,7 @@ Board::Board()
 Board::~Board()
 {
     // TODO
+    cout << "deleting from memory" << endl;
     delete board;
 }
 

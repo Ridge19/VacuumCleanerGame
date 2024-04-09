@@ -54,7 +54,7 @@ int main() {
             } else if (gameInput == "load 2" || gameInput == "2") {
                 cout << "loading board 2" << endl;
                 board.load(2);
-                gameMenu();
+                gameMenu(); 
                 // IMPLEMENT REST OF GAME FUNCTION FOR BOARD 2 HERE 
             } else if (gameInput == "quit" || gameInput == "Quit") {
                 cout << "going back to main menu" << endl;
