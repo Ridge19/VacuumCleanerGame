@@ -62,6 +62,9 @@ int main() {
                     cout << "selected board 2. loading..." << endl;
                     board->load(2);
                     Initalise();
+                } else {
+                    Helper::printInvalidInput();
+                    BoardMenu();
                 }
                 // IMPLEMENT REST OF GAME FUNCTION FOR BOARD 1 HERE 
                 // ---------------------------
@@ -80,7 +83,6 @@ int main() {
             return EXIT_SUCCESS;
         } else {
             Helper::printInvalidInput();
-            gameMenu();
         }
     }
 } 
