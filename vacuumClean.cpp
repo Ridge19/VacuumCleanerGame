@@ -48,6 +48,7 @@ int main() {
             gameMenu();
             cout << "Enter option: " << endl;
             gameInput = Helper::readInput();
+            
             if (gameInput == "load") {
                 Board* board = new Board();
                 cout << endl;
