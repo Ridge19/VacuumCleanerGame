@@ -37,25 +37,27 @@ int main() {
     while (true) {
         mainMenu();
 
-        Board board;
         std::string userInput; //for main Menu (vacuum cleaner menu)
         std::string gameInput; //for game menu (load board menu)
         userInput = Helper::readInput();
 
         if (userInput == "1") {
+            Board* board = new Board();
             gameMenu();
             cout << "Enter option: " << endl;
             gameInput = Helper::readInput();
             if (gameInput == "load 1" || gameInput == "1") {
                 cout << "loading board 1" << endl;
-                board.load(1);
+                board->load(1);
                 gameMenu();
                 // IMPLEMENT REST OF GAME FUNCTION FOR BOARD 1 HERE 
+
             } else if (gameInput == "load 2" || gameInput == "2") {
                 cout << "loading board 2" << endl;
-                board.load(2);
+                board->load(2);
                 gameMenu(); 
                 // IMPLEMENT REST OF GAME FUNCTION FOR BOARD 2 HERE 
+
             } else if (gameInput == "quit" || gameInput == "Quit") {
                 cout << "going back to main menu" << endl;
             } else {
@@ -69,6 +71,7 @@ int main() {
             return EXIT_SUCCESS;
         } else {
             Helper::printInvalidInput();
+            gameMenu();
         }
     }
 } 
