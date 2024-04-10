@@ -23,6 +23,10 @@ void showStudentInformation(string name, string id, string email){
 
 void mainMenu();
 
+void BoardMenu();
+
+void Initalise();
+
 void game();
 
 void gameMenu();
@@ -36,29 +40,34 @@ int main() {
      */
     while (true) {
         mainMenu();
-
         std::string userInput; //for main Menu (vacuum cleaner menu)
         std::string gameInput; //for game menu (load board menu)
         userInput = Helper::readInput();
 
         if (userInput == "1") {
-            Board* board = new Board();
             gameMenu();
             cout << "Enter option: " << endl;
             gameInput = Helper::readInput();
-            if (gameInput == "load 1" || gameInput == "1") {
-                cout << "loading board 1" << endl;
-                board->load(1);
-                gameMenu();
+            if (gameInput == "load") {
+                Board* board = new Board();
+                cout << endl;
+                BoardMenu();
+                gameInput = Helper::readInput();
+
+                if (gameInput == "load 1" || gameInput == "Load 1") {
+                    cout << "selected board 1. loading..." << endl;
+                    board->load(1);
+                    Initalise();
+                } else if (gameInput == "load 2" || gameInput == "Load 2") {
+                    cout << "selected board 2. loading..." << endl;
+                    board->load(2);
+                    Initalise();
+                }
                 // IMPLEMENT REST OF GAME FUNCTION FOR BOARD 1 HERE 
+                // ---------------------------
+            } 
 
-            } else if (gameInput == "load 2" || gameInput == "2") {
-                cout << "loading board 2" << endl;
-                board->load(2);
-                gameMenu(); 
-                // IMPLEMENT REST OF GAME FUNCTION FOR BOARD 2 HERE 
-
-            } else if (gameInput == "quit" || gameInput == "Quit") {
+            else if (gameInput == "quit" || gameInput == "Quit") {
                 cout << "going back to main menu" << endl;
             } else {
                 Helper::printInvalidInput(); //prints invalid output by calling helper class 
@@ -76,7 +85,7 @@ int main() {
     }
 } 
 
-void mainMenu() { //userInput 
+void mainMenu() { //userInput  (REQ 1)
     cout << "\nWelcome to the Vaccum Cleaning Game!" << endl;
     cout << "------------------------" << endl;
     cout << "1. Play Game" << endl;
@@ -87,7 +96,7 @@ void mainMenu() { //userInput
     cout << endl;
 }
 
-void gameMenu() { //gameInput
+void gameMenu() { //gameInput (REQ 1)
     cout << "You can use the following commands to play the game: \n" << endl;
     cout << "load <g>" << endl;
     cout << "\t" << "g: number of the game board to load" << endl;
@@ -101,7 +110,20 @@ void gameMenu() { //gameInput
     cout << "quit" << endl; 
 }
 
-void Quit() {
+void BoardMenu() { // REQ 2 Menu
+    cout << "At this stage of the program, only two commands are acceptable: " << endl;
+    cout << "load <g>" << endl;
+    cout << "quit" << endl;
+}
+
+void Initalise() { //REQ 3 Menu
+    cout << "At this stage of the program, only three commands are acceptable: " << endl;
+    cout << "load <g>" << endl;
+    cout << "init <x>, <y>, <direction>" << endl;
+    cout << "quit" << endl;
+}
+
+void Quit() { // (REQ 1)
     cout << "Good bye!\n\n";
 
 }
