@@ -4,9 +4,11 @@
 #include "board.h"
 
 #include <iostream>
+#include <vector>
 
 
 using std::string;
+using std::vector;
 using std::cout;
 using std::endl;
 using std::cin;
@@ -59,10 +61,16 @@ int main() {
                     cout << "selected board 1. loading..." << endl;
                     board->load(1);
                     Initalise();
+                    string userInput = Helper::readInput();
+
+
                 } else if (gameInput == "load 2" || gameInput == "Load 2") {
                     cout << "selected board 2. loading..." << endl;
                     board->load(2);
                     Initalise();
+
+                } else if (gameInput == "quit") {
+                    gameMenu();
                 } else {
                     Helper::printInvalidInput();
                     BoardMenu();

@@ -8,9 +8,9 @@
             "type": "lldb",
             "request": "launch",
             "name": "Launch",
-            "program": "${workspaceFolder}/vacuumClean.exe",
+            "program": "/home/ridge/advProg/Assignment1/Assignment1-s3934367",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "cwd": "/home/ridge/advProg/Assignment1"
         }
 
     ]
