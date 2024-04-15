@@ -15,7 +15,7 @@ using std::endl;
 using std::cin;
 
 
-void showStudentInformation(string name, string id, string email){
+void showStudentInformation(string name, string id, string email) {
     // TODO
     cout << "------------------------" << endl;
     cout << "Name: " << name << endl;
