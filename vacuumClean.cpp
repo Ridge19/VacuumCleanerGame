@@ -4,6 +4,7 @@
 #include "board.h"
 
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 
@@ -61,17 +62,22 @@ int main() {
                     cout << "selected board 1. loading..." << endl;
                     board->load(1);
                     Initalise();
-                    int x, y;
                     cout << "Enter coordinates: " << endl;
-                    cin >> x >> y;
+                    std::getline(cin, gameInput);
+                    std::stringstream ss(gameInput);
+                    int x, y;
+                    char delimiter = ',';
 
-                    Position position {x,y};
-
-                    if (board->placePlayer(Position(x, y))) {
-                        cout << "Player placed at coordinates" << x << ", " << y;
-                    } else {
-                        cout << "Player cannot be placed - invalid coordinates" << endl;
+                    if (std::getline(ss, gameInput, delimiter)) {
+                        x = std::stoi(gameInput);
+                        if (std::getline(ss, gameInput, delimiter)) {
+                            y = std::stoi(gameInput);
+                            board->placePlayer(Position(x, y));
+                            board->load(1);
+                        }
                     }
+
+
 
                 } else if (gameInput == "load 2" || gameInput == "Load 2") {
                     cout << "selected board 2. loading..." << endl;
@@ -86,8 +92,6 @@ int main() {
                     Helper::printInvalidInput();
                     BoardMenu();
                 }
-                // IMPLEMENT REST OF GAME FUNCTION FOR BOARD 1 HERE 
-                // ---------------------------
             } 
 
             else if (gameInput == "quit" || gameInput == "Quit") {

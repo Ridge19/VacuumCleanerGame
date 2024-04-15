@@ -114,30 +114,24 @@ void Board::load(int boardId)
 
 bool Board::placePlayer(Position position)
 {
-    if (position.x >= 0 && position.x < COLS && position.y >= 0 && position.y < ROWS && Board::BOARD_1[position.y][position.x] != BLOCKED) {
-        Player* player = new Player();
-        player->position.x = position.x;
-        player->position.y = position.y;
-        player->initialisePlayer(&position, Direction::NORTH);
-        return true;
+    if (position.x >= 0 && position.x < COLS && position.y >= 0 && position.y < ROWS) {
+        if (Board::BOARD_1[position.y][position.x] == BLOCKED) {
+            cout << "cell blocked! cannot place player" << endl;
+            return false;
+        } else {
+            Player* player = new Player();
+            player->position.x = position.x;
+            player->position.y = position.y;
+            cout << "Player placed in coordinates " << position.x << ", " << position.y << endl;
+            Board::display(player);
+            return true;
+        }
     } else {
         cout << "Error - invalid coordinates" << endl;
         return false;
     }
 
-    // if (placePlayer(position) != BLOCKED) {
-    //     if (placePlayer(position) == true) {
-    //         Player* player = new Player();
-    //         player->position.x = position.x;
-    //         player->position.y = position.y;
-    //         return true;
-    //     } else {
-    //         cout << "Error. invalid move" << endl;
-    //         return false;
-    //     }
-    // }
 
-    return false;
 
     // TODO
     // return false; // feel free to revise this line, depending on your implementation.
@@ -155,7 +149,8 @@ void Board::display(Player* player)
         for (int y = 0; y < ROWS; y++) {
             for (int x = 0; x < COLS; x++) {
                 if (player->getNextForwardPosition().x == x && player->getNextForwardPosition().y == y) {
-                    cout << "*";
+                    cout << "calling display function" << endl;
+                    cout << PLAYER;
                 }
             }
         }
