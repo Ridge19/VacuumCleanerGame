@@ -1,5 +1,6 @@
 #include "board.h"
 #include "game.h"
+#include "player.h"
 using std::vector;
 
 using std::cout;
@@ -143,18 +144,52 @@ PlayerMove Board::movePlayerForward(Player* player)
     return PLAYER_MOVED;
 }
 
-void Board::display(Player* player)
-{
+void Board::display(Player* player) {
+
     // TODO
-        for (int y = 0; y < ROWS; y++) {
-            for (int x = 0; x < COLS; x++) {
-                if (player->getNextForwardPosition().x == x && player->getNextForwardPosition().y == y) {
-                    cout << "calling display function" << endl;
-                    cout << PLAYER;
-                }
+    if (player == nullptr) {
+        return;
+    }
+    std::cout << "|" << " " << "|";
+    for (int col = 0; col < COLS; col++) {
+        std::cout << "" << col << "|";
+    }
+    std::cout << std::endl;
+
+    for (int y = 0; y < ROWS; y++) {
+        std::cout << "|" << y << "|";
+        for (int x = 0; x < COLS; x++) {
+            if (player->position.x == x && player->position.y == y) {
+                cout << "@|";
+            }
+            if (Board::BOARD_1[y][x] == 1) {
+                std::cout << "*|";
+            }
+            if (Board::BOARD_1[y][x] == 0) {
+                std::cout << " |";
             }
         }
+        std::cout << std::endl;
     }
+    
+//     for (int y = 0; y < ROWS; y++) {
+//         for (int x = 0; x < COLS; x++) {
+//             // Check if current player coordinates match current board position
+//             if (player->position.x == x && player->position.y == y) {
+//             cout << PLAYER;
+//         } else {
+//             // Display the existing board element
+//             cout << Board::BOARD_1[y][x];
+//         }
+//     }
+//     cout << endl;  // Add newline after each row
+//   }
+
+    cout << PLAYER << " is at: " << player->position.x << ", " << player->position.y << endl;
+}
+
+
+
 
 
 

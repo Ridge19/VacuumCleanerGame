@@ -41,8 +41,8 @@ int main() {
      * TODO: here's the main function. You can write the "main menu" loop/code
      * here or you can make separate functions - up to you.
      */
+    mainMenu();
     while (true) {
-        mainMenu();
         std::string userInput; //for main Menu (vacuum cleaner menu)
         std::string gameInput; //for game menu (load board menu)
         userInput = Helper::readInput();
@@ -73,12 +73,12 @@ int main() {
                         if (std::getline(ss, gameInput, delimiter)) {
                             y = std::stoi(gameInput);
                             board->placePlayer(Position(x, y));
-                            board->load(1);
+                        } else {
+                            Initalise();
                         }
+                    } else {
+                        gameMenu();
                     }
-
-
-
                 } else if (gameInput == "load 2" || gameInput == "Load 2") {
                     cout << "selected board 2. loading..." << endl;
                     board->load(2);
@@ -93,12 +93,11 @@ int main() {
                     BoardMenu();
                 }
             } 
-
             else if (gameInput == "quit" || gameInput == "Quit") {
-                cout << "going back to main menu" << endl;
-                // memory cleanup
+                Quit();
             } else {
                 Helper::printInvalidInput(); //prints invalid output by calling helper class 
+                gameMenu();
             }
         } else if (userInput == "2") {
             showStudentInformation("Ridge Tagala", "s3934367", "s3934367@student.rmit.edu.au");
