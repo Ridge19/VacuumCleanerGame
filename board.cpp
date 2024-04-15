@@ -128,7 +128,24 @@ bool Board::placePlayer(Position position)
             return true;
         }
     } else {
-        cout << "Error - invalid coordinates" << endl;
+        cout << "Error - invalid coordinates for board 1" << endl;
+        return false;
+    }
+
+    if (position.x >= 0 && position.x < COLS && position.y >= 0 && position.y < ROWS) {
+        if (Board::BOARD_2[position.y][position.x] == BLOCKED) {
+            cout << "cell blocked! cannot place player" << endl;
+            return false;
+        } else {
+            Player* player = new Player();
+            player->position.x = position.x;
+            player->position.y = position.y;
+            cout << "Player placed in coordinates " << position.x << ", " << position.y << endl;
+            Board::display(player);
+            return true;
+        }
+    } else {
+        cout << "Error - invalid coordinates for board 2" << endl;
         return false;
     }
 
@@ -150,6 +167,8 @@ void Board::display(Player* player) {
     if (player == nullptr) {
         return;
     }
+
+    //board 1
     std::cout << "|" << " " << "|";
     for (int col = 0; col < COLS; col++) {
         std::cout << "" << col << "|";
@@ -171,19 +190,29 @@ void Board::display(Player* player) {
         }
         std::cout << std::endl;
     }
-    
-//     for (int y = 0; y < ROWS; y++) {
-//         for (int x = 0; x < COLS; x++) {
-//             // Check if current player coordinates match current board position
-//             if (player->position.x == x && player->position.y == y) {
-//             cout << PLAYER;
-//         } else {
-//             // Display the existing board element
-//             cout << Board::BOARD_1[y][x];
-//         }
-//     }
-//     cout << endl;  // Add newline after each row
-//   }
+
+    //board 2
+    std::cout << "|" << " " << "|";
+    for (int col = 0; col < COLS; col++) {
+        std::cout << "" << col << "|";
+    }
+    std::cout << std::endl;
+
+    for (int y = 0; y < ROWS; y++) {
+        std::cout << "|" << y << "|";
+        for (int x = 0; x < COLS; x++) {
+            if (player->position.x == x && player->position.y == y) {
+                cout << "@|";
+            }
+            if (Board::BOARD_2[y][x] == 1) {
+                std::cout << "*|";
+            }
+            if (Board::BOARD_2[y][x] == 0) {
+                std::cout << " |";
+            }
+        }
+        std::cout << std::endl;
+    }
 
     cout << PLAYER << " is at: " << player->position.x << ", " << player->position.y << endl;
 }

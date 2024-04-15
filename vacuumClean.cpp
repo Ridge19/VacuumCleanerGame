@@ -83,6 +83,23 @@ int main() {
                     cout << "selected board 2. loading..." << endl;
                     board->load(2);
                     Initalise();
+                    cout << "Enter coordinates: " << endl;
+                    std::getline(cin, gameInput);
+                    std::stringstream ss(gameInput);
+                    int x, y;
+                    char delimiter = ',';
+
+                    if (std::getline(ss, gameInput, delimiter)) {
+                        x = std::stoi(gameInput);
+                        if (std::getline(ss, gameInput, delimiter)) {
+                            y = std::stoi(gameInput);
+                            board->placePlayer(Position(x, y));
+                        } else {
+                            Initalise();
+                        }
+                    } else {
+                        gameMenu();
+                    }
 
                 } else if (gameInput == "quit") {
                     delete board;
