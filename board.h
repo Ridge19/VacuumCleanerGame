@@ -85,6 +85,7 @@ public:
      * display the arrow. Here is an example output (without the player arrow):
     */
     void display(Player* player);
+
 };
 
 

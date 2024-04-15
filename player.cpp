@@ -13,8 +13,8 @@ Position::Position()
 Position::Position(int x, int y)
 {
     //TODO
-    // this->x;
-    // this->y;
+    this->x = x;
+    this->y = y;
 
 }
 
@@ -51,9 +51,9 @@ Position Player::getNextForwardPosition()
         newPosition.x--;
     }
 
-    return newPosition;
+    // return newPosition;
 
-    // return this->position;
+    return this->position;
 
 }
 

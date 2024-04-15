@@ -61,8 +61,17 @@ int main() {
                     cout << "selected board 1. loading..." << endl;
                     board->load(1);
                     Initalise();
-                    string userInput = Helper::readInput();
+                    int x, y;
+                    cout << "Enter coordinates: " << endl;
+                    cin >> x >> y;
 
+                    Position position {x,y};
+
+                    if (board->placePlayer(Position(x, y))) {
+                        cout << "Player placed at coordinates" << x << ", " << y;
+                    } else {
+                        cout << "Player cannot be placed - invalid coordinates" << endl;
+                    }
 
                 } else if (gameInput == "load 2" || gameInput == "Load 2") {
                     cout << "selected board 2. loading..." << endl;
@@ -70,6 +79,8 @@ int main() {
                     Initalise();
 
                 } else if (gameInput == "quit") {
+                    delete board;
+                    board = nullptr;
                     gameMenu();
                 } else {
                     Helper::printInvalidInput();
@@ -81,6 +92,7 @@ int main() {
 
             else if (gameInput == "quit" || gameInput == "Quit") {
                 cout << "going back to main menu" << endl;
+                // memory cleanup
             } else {
                 Helper::printInvalidInput(); //prints invalid output by calling helper class 
             }

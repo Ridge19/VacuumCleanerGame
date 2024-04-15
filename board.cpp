@@ -1,4 +1,5 @@
 #include "board.h"
+#include "game.h"
 using std::vector;
 
 using std::cout;
@@ -113,8 +114,33 @@ void Board::load(int boardId)
 
 bool Board::placePlayer(Position position)
 {
+    if (position.x >= 0 && position.x < COLS && position.y >= 0 && position.y < ROWS && Board::BOARD_1[position.y][position.x] != BLOCKED) {
+        Player* player = new Player();
+        player->position.x = position.x;
+        player->position.y = position.y;
+        player->initialisePlayer(&position, Direction::NORTH);
+        return true;
+    } else {
+        cout << "Error - invalid coordinates" << endl;
+        return false;
+    }
+
+    // if (placePlayer(position) != BLOCKED) {
+    //     if (placePlayer(position) == true) {
+    //         Player* player = new Player();
+    //         player->position.x = position.x;
+    //         player->position.y = position.y;
+    //         return true;
+    //     } else {
+    //         cout << "Error. invalid move" << endl;
+    //         return false;
+    //     }
+    // }
+
+    return false;
+
     // TODO
-    return false; // feel free to revise this line, depending on your implementation.
+    // return false; // feel free to revise this line, depending on your implementation.
 }
 
 PlayerMove Board::movePlayerForward(Player* player)
@@ -126,6 +152,21 @@ PlayerMove Board::movePlayerForward(Player* player)
 void Board::display(Player* player)
 {
     // TODO
-}
+        for (int y = 0; y < ROWS; y++) {
+            for (int x = 0; x < COLS; x++) {
+                if (player->getNextForwardPosition().x == x && player->getNextForwardPosition().y == y) {
+                    cout << "*";
+                }
+            }
+        }
+    }
+
+
+
+
+    // if (player != nullptr && player->position.x && player->position.y != BLOCKED) {
+    // //     int playerX = player->position.x;
+    // //     int playerY = player->position.y;
+    // }
 
 
