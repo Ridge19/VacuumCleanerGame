@@ -26,7 +26,7 @@ void showStudentInformation(string name, string id, string email) {
 
 void mainMenu();
 
-// void game(); //game loop - to play the game 
+void playGame(); //game loop - to play the game 
 
 void BoardMenu();
 
@@ -46,87 +46,15 @@ int main() {
     mainMenu();
     while (true) {
         std::string userInput; //for main Menu (vacuum cleaner menu)
-        std::string gameInput; //for game menu (load board menu)
         userInput = Helper::readInput();
-
 
         if (userInput == "1") {
             gameMenu();
             cout << "Enter option: " << endl;
-            gameInput = Helper::readInput();
-            
-            if (gameInput == "load") {
-                Board* board = new Board();
-                Player* player = new Player();
-                cout << endl;
-                BoardMenu();
-                gameInput = Helper::readInput();
-
-                if (gameInput == "load 1" || gameInput == "Load 1") {
-                    cout << "selected board 1. loading..." << endl;
-                    board->load(1);
-                    board->display(player);
-                    Initalise();
-
-                    cout << "Enter coordinates: " << endl;
-                    std::getline(cin, gameInput);
-                    std::stringstream ss(gameInput);
-                    int x, y;
-                    char delimiter = ',';
-
-                    if (std::getline(ss, gameInput, delimiter)) {
-                        x = std::stoi(gameInput);
-                        if (std::getline(ss, gameInput, delimiter)) {
-                            y = std::stoi(gameInput);
-                            board->placePlayer(Position(x, y));
-                            Initalise();
-                        } else {
-                            Initalise();
-                        }
-                    } else {
-                        gameMenu();
-                    }
-                } else if (gameInput == "load 2" || gameInput == "Load 2") {
-                    cout << "selected board 2. loading..." << endl;
-                    board->load(2);
-                    Initalise();
-                    cout << "Enter coordinates: " << endl;
-                    std::getline(cin, gameInput);
-                    std::stringstream ss(gameInput);
-                    int x, y;
-                    char delimiter = ',';
-
-                    if (std::getline(ss, gameInput, delimiter)) {
-                        x = std::stoi(gameInput);
-                        if (std::getline(ss, gameInput, delimiter)) {
-                            y = std::stoi(gameInput);
-                            board->placePlayer(Position(x, y));
-                            Initalise();
-                        } else {
-                            Initalise();
-                        }
-                    } else {
-                        gameMenu();
-                    }
-
-                } else if (gameInput == "quit") {
-                    delete board;
-                    board = nullptr;
-                    gameMenu();
-                } else {
-                    Helper::printInvalidInput();
-                    gameMenu();
-                }
-            } 
-            else if (gameInput == "quit" || gameInput == "Quit") {
-                Quit();
-            } else {
-                Helper::printInvalidInput(); //prints invalid output by calling helper class 
-                gameMenu();
-            }
+            playGame();
         } else if (userInput == "2") {
             showStudentInformation("Ridge Tagala", "s3934367", "s3934367@student.rmit.edu.au");
-
+            gameMenu();
         } else if (userInput == "3") {
             Quit();
             return EXIT_SUCCESS;
@@ -136,6 +64,83 @@ int main() {
         }
     }
 } 
+
+void playGame() {
+
+    while (true) {
+        std::string gameInput;
+        gameInput = Helper::readInput();
+
+        if (gameInput == "load") {
+            Board* board = new Board();
+            cout << endl;
+            BoardMenu();
+            gameInput = Helper::readInput();
+
+            if (gameInput == "load 1" || gameInput == "Load 1") {
+                cout << "selected board 1. loading..." << endl;
+                board->load(1);
+                Initalise();
+
+                cout << "Enter coordinates: " << endl;
+                std::getline(cin, gameInput);
+                std::stringstream ss(gameInput);
+                int x, y;
+                char delimiter = ',';
+
+                if (std::getline(ss, gameInput, delimiter)) {
+                    x = std::stoi(gameInput);
+                    if (std::getline(ss, gameInput, delimiter)) {
+                        y = std::stoi(gameInput);
+                        board->placePlayer(Position(x, y));
+                        Initalise();
+                    } else {
+                        Initalise();
+                    }
+                } else {
+                    gameMenu();
+                }
+            } else if (gameInput == "load 2" || gameInput == "Load 2") {
+                cout << "selected board 2. loading..." << endl;
+                board->load(2);
+                Initalise();
+                cout << "Enter coordinates: " << endl;
+                std::getline(cin, gameInput);
+                std::stringstream ss(gameInput);
+                int x, y;
+                char delimiter = ',';
+
+                if (std::getline(ss, gameInput, delimiter)) {
+                    x = std::stoi(gameInput);
+                    if (std::getline(ss, gameInput, delimiter)) {
+                        y = std::stoi(gameInput);
+                        board->placePlayer(Position(x, y));
+                        Initalise();
+                    } else {
+                        Initalise();
+                    }
+                } else {
+                    gameMenu();
+                }
+
+            } else if (gameInput == "quit") {
+                delete board;
+                board = nullptr;
+                gameMenu();
+            } else {
+                Helper::printInvalidInput();
+                gameMenu();
+            }
+        } 
+        else if (gameInput == "quit" || gameInput == "Quit") {
+            Quit();
+
+        } else {
+            Helper::printInvalidInput(); //prints invalid output by calling helper class 
+            gameMenu();
+        }
+    }
+}
 
 void mainMenu() { //userInput  (REQ 1)
     cout << "\nWelcome to the Vaccum Cleaning Game!" << endl;
@@ -177,6 +182,5 @@ void Initalise() { //REQ 3 Menu
 
 void Quit() { // (REQ 1)
     cout << "Good bye!\n\n";
-
 }
 

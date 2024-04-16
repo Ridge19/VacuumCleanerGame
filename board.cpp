@@ -201,28 +201,6 @@ void Board::display(Player* player) {
             std::cout << std::endl;
         }
 
-        std::cout << "|" << " " << "|";
-        for (int col = 0; col < COLS; col++) {
-            std::cout << "" << col << "|";
-        }
-        std::cout << std::endl;
-
-        for (int y = 0; y < ROWS; y++) {
-            std::cout << "|" << y << "|";
-            for (int x = 0; x < COLS; x++) {
-                if (player->position.x == x && player->position.y == y) {
-                    cout << "@|";
-                }
-                if (Board::BOARD_2[y][x] == 1) {
-                    std::cout << "*|";
-                }
-                if (Board::BOARD_2[y][x] == 0) {
-                    std::cout << " |";
-                }
-            }
-            std::cout << std::endl;
-        }
-
     //board 2
     // std::cout << "|" << " " << "|";
     // for (int col = 0; col < COLS; col++) {
