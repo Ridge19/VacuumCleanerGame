@@ -26,6 +26,8 @@ void showStudentInformation(string name, string id, string email) {
 
 void mainMenu();
 
+// void game(); //game loop - to play the game 
+
 void BoardMenu();
 
 void Initalise();
@@ -47,6 +49,7 @@ int main() {
         std::string gameInput; //for game menu (load board menu)
         userInput = Helper::readInput();
 
+
         if (userInput == "1") {
             gameMenu();
             cout << "Enter option: " << endl;
@@ -54,6 +57,7 @@ int main() {
             
             if (gameInput == "load") {
                 Board* board = new Board();
+                Player* player = new Player();
                 cout << endl;
                 BoardMenu();
                 gameInput = Helper::readInput();
@@ -61,7 +65,9 @@ int main() {
                 if (gameInput == "load 1" || gameInput == "Load 1") {
                     cout << "selected board 1. loading..." << endl;
                     board->load(1);
+                    board->display(player);
                     Initalise();
+
                     cout << "Enter coordinates: " << endl;
                     std::getline(cin, gameInput);
                     std::stringstream ss(gameInput);
@@ -73,6 +79,7 @@ int main() {
                         if (std::getline(ss, gameInput, delimiter)) {
                             y = std::stoi(gameInput);
                             board->placePlayer(Position(x, y));
+                            Initalise();
                         } else {
                             Initalise();
                         }
@@ -94,6 +101,7 @@ int main() {
                         if (std::getline(ss, gameInput, delimiter)) {
                             y = std::stoi(gameInput);
                             board->placePlayer(Position(x, y));
+                            Initalise();
                         } else {
                             Initalise();
                         }
@@ -107,7 +115,7 @@ int main() {
                     gameMenu();
                 } else {
                     Helper::printInvalidInput();
-                    BoardMenu();
+                    gameMenu();
                 }
             } 
             else if (gameInput == "quit" || gameInput == "Quit") {
@@ -124,6 +132,7 @@ int main() {
             return EXIT_SUCCESS;
         } else {
             Helper::printInvalidInput();
+            gameMenu();
         }
     }
 } 

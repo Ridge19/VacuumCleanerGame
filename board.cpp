@@ -158,61 +158,93 @@ bool Board::placePlayer(Position position)
 PlayerMove Board::movePlayerForward(Player* player)
 {
     // TODO
-    return PLAYER_MOVED;
+    if (player->position.y == 0) {
+        cout << "player is already at that coordinate!" << endl;
+    } 
+    if (Board::BOARD_1[player->position.y - 1][player->position.x] != BLOCKED) {
+        player->position.y--;
+        return PLAYER_MOVED;
+    } else if (player->position.x > COLS && player->position.y > ROWS) {
+        cout << "Error! outside of board bounds!" << endl;
+        return OUTSIDE_BOUNDS;
+    } else {
+        cout << "cell is blocked" << endl;
+        return CELL_BLOCKED;
+    }
 }
 
 void Board::display(Player* player) {
-
     // TODO
     if (player == nullptr) {
         return;
     }
-
-    //board 1
-    std::cout << "|" << " " << "|";
-    for (int col = 0; col < COLS; col++) {
-        std::cout << "" << col << "|";
-    }
-    std::cout << std::endl;
-
-    for (int y = 0; y < ROWS; y++) {
-        std::cout << "|" << y << "|";
-        for (int x = 0; x < COLS; x++) {
-            if (player->position.x == x && player->position.y == y) {
-                cout << "@|";
-            }
-            if (Board::BOARD_1[y][x] == 1) {
-                std::cout << "*|";
-            }
-            if (Board::BOARD_1[y][x] == 0) {
-                std::cout << " |";
-            }
+        //board 1
+        std::cout << "|" << " " << "|";
+        for (int col = 0; col < COLS; col++) {
+            std::cout << "" << col << "|";
         }
         std::cout << std::endl;
-    }
+
+        for (int y = 0; y < ROWS; y++) {
+            std::cout << "|" << y << "|";
+            for (int x = 0; x < COLS; x++) {
+                if (player->position.x == x && player->position.y == y) {
+                    cout << "@|";
+                }
+                if (Board::BOARD_1[y][x] == 1) {
+                    std::cout << "*|";
+                }
+                if (Board::BOARD_1[y][x] == 0) {
+                    std::cout << " |";
+                }
+            }
+            std::cout << std::endl;
+        }
+
+        std::cout << "|" << " " << "|";
+        for (int col = 0; col < COLS; col++) {
+            std::cout << "" << col << "|";
+        }
+        std::cout << std::endl;
+
+        for (int y = 0; y < ROWS; y++) {
+            std::cout << "|" << y << "|";
+            for (int x = 0; x < COLS; x++) {
+                if (player->position.x == x && player->position.y == y) {
+                    cout << "@|";
+                }
+                if (Board::BOARD_2[y][x] == 1) {
+                    std::cout << "*|";
+                }
+                if (Board::BOARD_2[y][x] == 0) {
+                    std::cout << " |";
+                }
+            }
+            std::cout << std::endl;
+        }
 
     //board 2
-    std::cout << "|" << " " << "|";
-    for (int col = 0; col < COLS; col++) {
-        std::cout << "" << col << "|";
-    }
-    std::cout << std::endl;
+    // std::cout << "|" << " " << "|";
+    // for (int col = 0; col < COLS; col++) {
+    //     std::cout << "" << col << "|";
+    // }
+    // std::cout << std::endl;
 
-    for (int y = 0; y < ROWS; y++) {
-        std::cout << "|" << y << "|";
-        for (int x = 0; x < COLS; x++) {
-            if (player->position.x == x && player->position.y == y) {
-                cout << "@|";
-            }
-            if (Board::BOARD_2[y][x] == 1) {
-                std::cout << "*|";
-            }
-            if (Board::BOARD_2[y][x] == 0) {
-                std::cout << " |";
-            }
-        }
-        std::cout << std::endl;
-    }
+    // for (int y = 0; y < ROWS; y++) {
+    //     std::cout << "|" << y << "|";
+    //     for (int x = 0; x < COLS; x++) {
+    //         if (player->position.x == x && player->position.y == y) {
+    //             cout << "@|";
+    //         }
+    //         if (Board::BOARD_2[y][x] == 1) {
+    //             std::cout << "*|";
+    //         }
+    //         if (Board::BOARD_2[y][x] == 0) {
+    //             std::cout << " |";
+    //         }
+    //     }
+    //     std::cout << std::endl;
+    // }
 
     cout << PLAYER << " is at: " << player->position.x << ", " << player->position.y << endl;
 }
